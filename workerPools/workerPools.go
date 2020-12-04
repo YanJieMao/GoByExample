@@ -21,11 +21,11 @@ func main() {
 	jobs := make(chan int, numJobs)
 	results := make(chan int, numJobs)
 
-	for w := 1; w <= 3; w++ {
+	for w := 1; w <= 3; w++ { //启动三个woker
 		go worker(w, jobs, results)
 	}
 
-	for j := 1; j <= numJobs; j++ {
+	for j := 1; j <= numJobs; j++ { //发送job
 		jobs <- j
 	}
 	close(jobs)
